@@ -45,7 +45,7 @@ logInForm.addEventListener('submit', (event) => {
     !inputPassword.value ||
     inputPassword.value[0] === ' '
   ) {
-    alert('Uncorrect username or password entered! Try again!');
+    alert('Incorrect username or password entered! Try again!');
     logout();
   } else {
     const user = {
