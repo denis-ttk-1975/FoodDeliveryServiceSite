@@ -22,7 +22,7 @@ if (localStorage.getItem('restaurant')) {
     .catch((error) => console.log(error));
   changeTitle(restaurant);
 } else {
-  window.location.href = '/';
+  window.location.href = '/index.html';
 }
 
 const renderItems = (data) => {
