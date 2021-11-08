@@ -67,7 +67,7 @@ const menu = () => {
         </div>
         </div>`;
 
-      const add = card.querySelector(".button-card-text");
+      const add = card.querySelector(".button-add-cart");
       add.addEventListener("click", () => {
         addToCart({
           id,
