@@ -1,6 +1,6 @@
 const partners = () => {
   const cardsRestaurants = document.querySelector(".cards-restaurants");
-  console.dir(cardsRestaurants);
+  console.log(cardsRestaurants);
   const modalAuth = document.querySelector(".modal-auth");
 
   fetch(

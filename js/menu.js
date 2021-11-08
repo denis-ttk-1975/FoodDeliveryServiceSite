@@ -13,7 +13,25 @@ const menu = () => {
     category.textContent = restaurant.kitchen;
   };
 
-  if (localStorage.getItem("restaurant")) {
+  const addToCart = (cartItem) => {
+    const cartArray = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+
+    if (cartArray.some((item) => item.id === cartItem.id)) {
+      cartArray.map((item) => {
+        if (item.id === cartItem.id) {
+          item.count++;
+        }
+      });
+    } else {
+      cartArray.push(cartItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cartArray));
+  };
+
+  if (localStorage.getItem("restaurant") && localStorage.getItem("user")) {
     const restaurant = JSON.parse(localStorage.getItem("restaurant"));
     fetch(
       `https://delivery-e00a4-default-rtdb.europe-west1.firebasedatabase.app/db/${restaurant.products}`
@@ -23,7 +41,7 @@ const menu = () => {
       .catch((error) => console.log(error));
     changeTitle(restaurant);
   } else {
-    window.location.href = "/index.html";
+    window.location.href = "./index.html";
   }
 
   const renderItems = (data) => {
@@ -48,6 +66,17 @@ const menu = () => {
             <strong class="card-price-bold">${price} ₽</strong>
         </div>
         </div>`;
+
+      const add = card.querySelector(".button-card-text");
+      add.addEventListener("click", () => {
+        addToCart({
+          id,
+          name,
+          price,
+          count: 1,
+        });
+      });
+
       cardMenu.append(card);
     });
   };
